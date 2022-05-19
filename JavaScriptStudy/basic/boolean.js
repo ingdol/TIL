@@ -24,4 +24,4 @@ let obj
 
 // console.log(obj.name)
 
-obj && console.log(obj.name)
+console.log(obj && console.log('true'))
