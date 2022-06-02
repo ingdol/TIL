@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import data from './data'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
@@ -7,8 +7,33 @@ import axios from 'axios'
 
 function App() {
   let [shoes, setShoes] = useState(data)
+  let [isClick, setClick] = useState(0)
+  let [loading, setLoading] = useState(false)
 
   let navigate = useNavigate()
+
+  const dataServer = () => {
+    if (isClick < 2) {
+      setLoading(true)
+      axios
+      .get('https://codingapple1.github.io/shop/data'+(isClick+2)+'.json')
+      .then((result) => {
+        console.log(result.data)
+        // let copy = [...shoes, ...result.data]
+        // setShoes(copy)
+        setShoes(shoes.concat(result.data))
+        setClick(++isClick)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+        setLoading(false)
+      })
+    } else {
+      alert('상품이 없습니다')
+    }
+    
+  }
 
   return (
     <div className="App">
@@ -65,20 +90,9 @@ function App() {
       </Routes>
 
       {/* AJAX 통신 */}
+      {loading && <div>로딩중</div>}
       <button
-        onClick={() => {
-          axios
-            .get('https://codingapple1.github.io/shop/data2.json')
-            .then((result) => {
-              console.log(result.data)
-              // let copy = [...shoes, ...result.data]
-              // setShoes(copy)
-              setShoes(shoes.concat(result.data))
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        }}
+        onClick={() => dataServer()}
       >
         버튼
       </button>
