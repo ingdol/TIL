@@ -12,9 +12,8 @@ const ellie = {
 
 // 직렬화 Serializing : 객체를 문자열로 변환
 const json = JSON.stringify(ellie)
-// onject의 데이터, 상태만 포함됨
-console.log(ellie)
-console.log(json)
+console.log(ellie) // 오브젝트 전체 반환
+console.log(json) // 오브젝트를 문자로 반환할 때 object의 데이터, 상태만 포함됨
 // JSON으로 만들어서 서버로 보냄
 
 // 역직렬화 Deserializing : 문자열 데이터를 자바스크립트 객체로 변환
