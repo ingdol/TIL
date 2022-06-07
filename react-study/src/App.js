@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import data from './data'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { Detail } from './Detail'
 import axios from 'axios'
 
+export let Context1 = React.createContext()
+
 function App() {
   let [shoes, setShoes] = useState(data)
   let [isClick, setClick] = useState(0)
   let [loading, setLoading] = useState(false)
+
+  let [cnt, setCnt] = useState([10, 11, 12])
 
   let navigate = useNavigate()
 
@@ -78,7 +82,11 @@ function App() {
             </div>
           }
         />
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />}>
+        
+        <Route path="/detail/:id" element={
+          <Context1.Provider value={ {cnt, shoes}}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>}>
           {/* <Route path="member" element={<div>+ 멤버</div>} />
           <Route path="location" element={<div>+ 위치</div>} /> */}
         </Route>

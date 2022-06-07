@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
+import { Context1  } from './App'
 
 export const Detail = (props) => {
   // useEffect() 안에 오래 걸리는 코드를 넣음
@@ -23,6 +24,9 @@ export const Detail = (props) => {
   let [count, setCount] = useState(0)
   let [isAlert, setAlert] = useState(true)
   let [numInput, setNumInput] = useState('')
+  let [isOpen, setOpen] = useState(1)
+
+  let {cnt} = useContext(Context1)
 
   useEffect(() => {
     let a = setTimeout(() => {
@@ -76,6 +80,26 @@ export const Detail = (props) => {
         </div>
         <Outlet></Outlet>
       </div>
+      {cnt}
+      <br></br>
+
+      {/* tab 버튼 만들기 */}
+      <button onClick={()=>{setOpen(1)}}>1</button>
+      <button onClick={()=>{setOpen(2)}}>2</button>
+      <button onClick={()=>{setOpen(3)}}>3</button>
+      {isOpen === 1&&<div>1 내용</div>}
+      {isOpen === 2&&<div>2 내용</div>}
+      {isOpen === 3&&<div>3 내용</div>}
+      <TabContent isOpen = {isOpen} shoes = {props.shoes}/>
     </div>
   )
+}
+
+// props 대신 {} 안에 변수 전달하면 props 안써도 됨
+const TabContent = ({isOpen, shoes}) => {
+  // if (isOpen === 1) return <div>1 내용내용</div>
+  // else if (isOpen === 2) return <div>2 내용내용</div>
+  // else return <div>3 내용내용</div>
+  let {cnt} = useContext(Context1)
+  return [<div>{shoes[0].title} {cnt[0]}</div>, <div>{shoes[1].title}</div>, <div>{shoes[2].title}</div>][isOpen-1]
 }
