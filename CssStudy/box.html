@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        /* 서로 다른 크기가 되는것을 방지 */
+        /* border의 경계 크기가 동일하게 처리함 */
+        box-sizing: border-box;
+      }
+      /* 엘리먼트의 크기는 콘텐츠의 크기 */
+      /* 그래서 width를 주면 서로 다른 크기가 됨 */
+      div {
+        margin: 10px;
+        width: 150px;
+      }
+      #small {
+        border: 10px solid black;
+      }
+      #large {
+        border: 30px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="small">small</div>
+    <div id="large">large</div>
+  </body>
+</html>
