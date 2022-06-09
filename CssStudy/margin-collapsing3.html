@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* 마진 겹침 */
+      /* 시각적인 요소가 없다면(내용이나 border과 같은 속성이 없다면) */
+      /* 그 태그의 마진값은 위와 아래 중 큰 값이 마진값이 됨 */
+      #empty {
+        margin-top: 50px;
+        margin-bottom: 100px;
+        /* border: 1px solid tomato; */
+        /* 시각적인 요소가 없기 때문에 margin 값은 100px */
+      }
+      #normal {
+        background-color: powderblue;
+        margin-top: 100px;
+        /* margin 자체는 100px가 됨 -> margin-bottom: 100px와 같음 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="empty"></div>
+    <div id="normal">a</div>
+  </body>
+</html>
