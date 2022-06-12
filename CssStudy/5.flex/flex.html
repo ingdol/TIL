@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      .container {
+        background: beige;
+
+        /* 100vh : 보이는 컨테이너 전체를 씀 */
+        height: 100vh;
+
+        /* <컨테이너를 꾸며주는 속성값> */
+        /* display: flex -> 왼쪽에서 오른쪽으로 정렬 */
+        display: flex;
+
+        /* flex-direction (전체적인 방향이 수평이 중심축인지 수직이 중심축인지)*/
+        /* row(기본정렬 - 왼쪽에서 오른쪽) / row-reverse(오른쪽에서 왼쪽으로) / column(위에서 아래로) / column-reverse(아래에서 위로) */
+        flex-direction: row;
+
+        /* flex-wrap (아이템들을 어떻게 위치시킬지) */
+        /* nowrap(한줄에 빼곡하게) / wrap(넘어가게) */
+        flex-wrap: nowrap;
+
+        /* flex-flow : flex-direction과 flex-wrap을 한꺼번에 작성할 수 있음 */
+        /* flex-flow: column nowrap; */
+
+        /* justify-content : 아이템을 어떻게 배치할건지 - 중심축(x축) */
+        /* flex-start(기본 - 왼쪽에서 오른쪽) / flex-end(오른쪽에서 왼쪽 - reverse 안됨) / center(가운데 정렬) */
+        /* space-around(아이템 사이에 스페이스를 줌 - 처음에는 1개 다음은 사이니까 2개) */
+        /* space-evenly(아이템 사이에 똑같은 간격) / space-between(앞뒤 간격 없이 가운데 똑같은 간격) */
+        justify-content: flex-start;
+
+        /* 아이템을 반대축(y축)으로 배치 */
+        /* align-items :  baseline(기준선으로 아이템들이 균등하게 배치) */
+        align-items: baseline;
+        /* align-content : justify-content와 반대로 y축으로 배치 */
+        /* justify-content와 동일함 */
+        align-content: center;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+      <div class="item item6">6</div>
+      <div class="item item7">7</div>
+      <div class="item item8">8</div>
+      <div class="item item9">9</div>
+      <div class="item item10">10</div>
+    </div>
+  </body>
+</html>

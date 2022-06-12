@@ -1,0 +1,46 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <style>
+      .container {
+        background-color: powderblue;
+        height: 200px;
+        display: flex;
+        flex-direction: row;
+        /* flex-direction: column; */
+      }
+      /* <아이템을 꾸며주는 속성값> */
+      /* grow와 shrink는 컨테이너의 사이즈가 바뀌었을때 아이템들이 얼마나 줄어들고 늘어나는지 */
+      .item {
+        background-color: tomato;
+        color: white;
+        border: 1px solid white;
+        /* flex-grow일 경우 모든 엘리먼트들이 똑같은 크기를 가짐  */
+        /* flex-grow: 1; */
+      }
+      .item:nth-child(1) {
+        flex-basis: 600px;
+        /* shrink가 0일 경우 줄어들지 않음 자기값 유지 */
+        /* flex-shrink: 0; */
+        /* basis 값이 있을때 shrink 크기가 작을 수록 크기를 유지함 */
+        flex-shrink: 1;
+      }
+      .item:nth-child(2) {
+        /* flex-basis는 flex 방향에 따른 크기 */
+        flex-basis: 600px;
+        flex-shrink: 2;
+        /* align-self : 지정된것을 벗어나 아이템 하나만 따로 배치하고 싶을 경우 */
+        align-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+    </div>
+  </body>
+</html>
