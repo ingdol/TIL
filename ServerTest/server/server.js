@@ -11,3 +11,10 @@ app.use(express.static(path.join(__dirname, "react-study/build")));
 app.get("/", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/react-study/build/index.html"));
 });
+
+app.get("*", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/react-study/build/index.html"));
+});
+
+// 내 ip 주소와 연결
+// https://4sii.tistory.com/3
