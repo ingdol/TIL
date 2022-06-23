@@ -25,21 +25,41 @@
     <button @click="increase(2)">신고하기</button>
     <span>{{ cnt[2] }}</span>
   </div>
+  <button @click="more">더보기</button>
+  <div v-if="isLodding === true">
+    <cube-spin></cube-spin>
+  </div>
 </template>
 
 <script>
+import CubeSpin from "../src/components/CubeCube.vue";
+import axios from "axios";
+
 export default {
+  components: {
+    CubeSpin,
+  },
   name: "App",
   data() {
     return {
       cnt: [0, 0, 0],
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
       content: ["Home", "About", "Detail"],
+      isLodding: false,
     };
   },
   methods: {
     increase(i) {
       this.cnt[i] += 1;
+    },
+    more() {
+      this.isLodding = true;
+      axios
+        .get("https://codingapple1.github.io/vue/more0.json")
+        .then(result => {
+          this.isLodding = false;
+          console.log(result);
+        });
     },
   },
 };
