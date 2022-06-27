@@ -29,15 +29,32 @@
   <div v-if="isLodding === true">
     <cube-spin></cube-spin>
   </div>
+  <div>
+    <!-- <vue-daum-map
+      :appKey="appKey"
+      v-bind:center="center"
+      v-bind:level="level"
+      :mapTypeId="mapTypeId"
+      :libraries="libraries"
+      @load="onLoad"
+      style="width: 500px; height: 400px"
+    /> -->
+    <!-- <div class="kmap" ref="map"></div> -->
+    <KakaoMap :options="mapOption" />
+  </div>
 </template>
 
 <script>
 import CubeSpin from "../src/components/CubeCube.vue";
 import axios from "axios";
+// import VueDaumMap from "vue-daum-map";
+import KakaoMap from "./components/KakaoMap.vue";
 
 export default {
   components: {
     CubeSpin,
+    // VueDaumMap,
+    KakaoMap,
   },
   name: "App",
   data() {
@@ -46,7 +63,37 @@ export default {
       products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
       content: ["Home", "About", "Detail"],
       isLodding: false,
+      // appKey: "204b08cdfcfe22a4120c9d729cd589d8", // 테스트용 appkey
+      // center: { lat: 33.450701, lng: 126.570667 }, // 지도의 중심 좌표
+      // level: 3, // 지도의 레벨(확대, 축소 정도),
+      // mapTypeId: VueDaumMap.MapTypeId.NORMAL, // 맵 타입
+      // libraries: [], // 추가로 불러올 라이브러리
+      // map: null, // 지도 객체. 지도가 로드되면 할당됨.
+      // daum: null, // 다음 API 객체. 지도가 로드되면 할당됨.
+      mapOption: {
+        center: {
+          lat: 33.450701,
+          lng: 126.570667,
+        },
+        level: 3,
+      },
     };
+  },
+  mounted() {
+    // let kakao = window.kakao;
+    // console.log(this.$refs.map);
+    // let container = this.$refs.map;
+    // let options = {
+    //   center: new kakao.maps.LatLng(33.450701, 126.570667),
+    //   level: 6,
+    // };
+    // const mapInstance = new kakao.maps.Map(container, options);
+    // console.log(mapInstance);
+    // let markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+    // let marker = new kakao.maps.Marker({
+    //   position: markerPosition,
+    // });
+    // marker.setMap(mapInstance);
   },
   methods: {
     increase(i) {
@@ -61,6 +108,10 @@ export default {
           console.log(result);
         });
     },
+    // onLoad(map, daum) {
+    //   this.map = map;
+    //   this.daum = daum;
+    // },
   },
 };
 </script>
