@@ -94,7 +94,159 @@
   <p>{{ calculateBooksMessage() }}</p>
 
   <!-- 수정 가능한 계산된 속성 -->
-  <p>{{ get(fullName) }}</p>
+  <!-- <p>{{ get(fullName) }}</p> -->
+
+  <!-- [ 클래스와 스타일 바인딩 ] -->
+  <!-- < HTML 클래스 바인딩 > -->
+  <!-- 객체로 바인딩하기 -->
+  <!-- <div :class="{ active: isActive }">test</div> -->
+  <!-- 바인딩 - 인라인 방법 -->
+  <div class="static" :class="{ active: isActive, 'text-danger': hasError }">
+    class 인라인
+  </div>
+  <!-- 계산된 속성 -->
+  <div :class="classObject">class 속성</div>
+
+  <!-- 배열로 바인딩 -->
+  <div :class="[activeClass, errorClass]">배열로 바인딩</div>
+  <div :class="[isActive ? activeClass : '', errorClass]">삼항 표현식</div>
+  <div :class="[{ active: isActive }, errorClass]">객체 구문 사용</div>
+
+  <!-- < 인라인 스타일 바인딩 > -->
+  <!-- 객체로 바인딩 -->
+  <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">
+    style 바인딩
+  </div>
+  <!-- 스타일 객체를 직접 바인딩 -->
+  <div :style="styleObject">style 바인딩</div>
+  <!-- 배열로 바인딩 -->
+  <!-- <div :style="[baseStyles, overridingStyles]"></div> -->
+  <!-- 다중 값 -->
+  <div :style="{ display: ['flex', '-webkit-box', '-ms-flexbox'] }">
+    다중 값
+  </div>
+
+  <!-- [ 조건부 랜더링 ] -->
+  <!-- < v-if > -->
+  <button @click="awesome = !awesome">전환</button>
+
+  <h1 v-if="awesome">여기는 보이는 공간</h1>
+  <h1 v-else>안 보이는 공간</h1>
+
+  <button @click="type = 'A'">a로 바꾸기</button>
+  <h1 v-if="type === 'B'">지금은 B</h1>
+  <h1 v-else-if="type === 'A'">a로 바뀜</h1>
+
+  <!-- < <template>에서 v-if > -->
+  <template v-if="awesome">
+    <h1>제목</h1>
+    <p>awesome이 true라 전체 보임</p>
+  </template>
+
+  <!-- <v-show> -->
+  <h1 v-show="awesome">안녕</h1>
+  <!-- v-show : <template> 엘리먼트를 지원하지 않음, v-else와 상호작용하지 않음 -->
+  <!-- v-show는 자주 전환해야 하는 경우 -->
+  <!-- v-if는 실행 중에 조건이 변경되지 않는 경우 -->
+
+  <!-- [ 리스트 렌더링 ] -->
+  <!-- < v-for > -->
+  <!-- in 대신 of도 됨 -->
+  <li v-for="(item, index) in items" :key="item.id">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  </li>
+
+  <!-- 속성, 속성명, 인덱스 -->
+  <li v-for="(value, key, index) in myObject" :key="key">
+    {{ index }}. {{ key }} : {{ value }}
+  </li>
+
+  <!-- 숫자 범위에 v-for 사용하기 -->
+  <!-- n의 값은 0이 아니라 1부터 시작 -->
+  <span v-for="n in 10" :key="n">{{ n }}</span>
+
+  <!-- 컴포넌트에 v-for 사용 -->
+
+  <!-- < 배열 변경 감지 > -->
+  <!-- 배열 교체 -->
+  <button @click="changeArr">배열 교체</button>
+  {{ items }}
+
+  <!-- < 필터링/정렬 결과 표시 > -->
+  <li v-for="n in evenNumbers" :key="n">{{ n }}</li>
+
+  <ul v-for="numbers in sets" :key="numbers">
+    <li v-for="n in even(numbers)" :key="n">{{ n }}</li>
+  </ul>
+
+  {{ reverseArr() }}
+  {{ numbers }}
+
+  <!-- < 인라인 핸들러 > -->
+  <button @click="count++">1 추가</button>
+  <p>숫자 값은: {{ count }}</p>
+
+  <!-- < 메서드 핸들러 > -->
+  <button @click="greet">환영하기</button>
+
+  <!-- < 인라인 핸들러에서 메서드 호출 > -->
+  <button @click="say('안녕')">안녕이라고 말하기</button>
+  <button @click="say('잘가')">잘가라고 말하기</button>
+
+  <!-- < 인라인 핸들러에서 이벤트 객체 접근하기 > -->
+  <!-- 특수한 키워드인 $event 사용 -->
+  <button @click="warn('아직 양식을 제출할 수 없습니다.', $event)">
+    제출하기
+  </button>
+
+  <!-- 인라인 화살표 함수 사용 -->
+  <button @click="(event) => warn('아직 양식을 제출할 수 없습니다.', event)">
+    제출하기
+  </button>
+
+  <!-- < 이벤트 수식어 > -->
+  <!-- 클릭 이벤트 전파가 중지됨 -->
+  <a @click="doThis"
+    >전파 중지
+    <a @click.stop="doThis2">전파 중지2</a>
+  </a>
+
+  <!-- submit 이벤트가 더 이상 페이지 리로드하지 않음 -->
+  <form @submit.prevent="onSubmit">
+    <input type="submit" value="submit" />리로드 안함
+  </form>
+
+  <!-- 수식어를 연결할 수 있음 -->
+  <a @click.stop.prevent="count++"
+    >수식어 연결
+
+    <a @click.stop.prevent="count++">수식어 연결2</a>
+  </a>
+  <p>{{ count }}</p>
+
+  <!-- 이벤트에 핸들러 없이 수식어만 사용할 수 있음 -->
+  <form @submit.prevent>
+    <input type="submit" value="submit" />수식어만 사용
+  </form>
+
+  <!-- event.target이 엘리먼트 자신일 경우에만 핸들러가 실행됨 -->
+  <!-- 예를 들어 자식 엘리먼트에서 클릭 액션이 있으면 핸들러가 실행되지 않음 -->
+  <button @click.self="count++">
+    클릭 1
+    <button @click="count++">클릭 2</button>
+  </button>
+  {{ count }}
+
+  <!-- [ Form 입력 바인딩 ] -->
+  <!-- v-model -->
+  <!-- <input :value="text" @input="(event) => (text = event.target.value)" /> -->
+  <input v-model="text" />
+  <p style="white-space: pre-line">메시지 {{ text }}</p>
+
+  <!-- < 여러 줄 텍스트 > -->
+  <textarea v-model="text"></textarea>
+
+  <!-- < 체크박스 > -->
 </template>
 
 <script>
@@ -151,6 +303,50 @@ export default {
 
       firstName: 'John',
       lastName: 'Doe',
+
+      // isActive: true,
+      // hasError: false,
+
+      // classObject: {
+      //   active: true,
+      //   'text-danger': false,
+      // },
+
+      isActive: true,
+      error: null,
+      // error: { type: 'fatal' },
+
+      activeClass: 'active',
+      errorClass: 'text-danger',
+
+      activeColor: 'red',
+      fontSize: 30,
+
+      styleObject: {
+        color: 'red',
+        fontSize: '13px',
+      },
+
+      awesome: true,
+      type: 'B',
+
+      parentMessage: 'Parent',
+      items: [{ message: 'Foo' }, { message: 'Bar' }],
+
+      myObject: {
+        title: 'Vue에서 목록을 작성하는 방법',
+        author: '홍길동',
+        publicshedAt: '2016-04-10',
+      },
+
+      numbers: [1, 2, 3, 4, 5],
+
+      sets: [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10],
+      ],
+
+      text: '',
     }
   },
   computed: {
@@ -160,14 +356,25 @@ export default {
     },
 
     // < 수정 가능한 계산된 속성 >
-    fullName: {
-      get() {
-        return this.firstName + ' ' + this.lastName
-      },
-      // set(newValue) {
-      //npm run lint -- --fix 오류 해결
-      // ;[this.firstName, this.lastName] = newValue.split(' ')
-      // },
+    // fullName: {
+    //   get() {
+    //     return this.firstName + ' ' + this.lastName
+    //   },
+    // set(newValue) {
+    //npm run lint -- --fix 오류 해결
+    // ;[this.firstName, this.lastName] = newValue.split(' ')
+    // },
+    // },
+    classObject() {
+      return {
+        active: this.isActive && !this.error,
+        'text-danger': this.error && this.error.type === 'fatal',
+      }
+    },
+
+    // 필터링/정렬 결과 표시
+    evenNumbers() {
+      return this.numbers.filter((n) => n % 2 === 0)
     },
   },
   // < 메서드 선언 >
@@ -218,6 +425,52 @@ export default {
     calculateBooksMessage() {
       return this.author.books.length > 0 ? 'Yes' : 'No'
     },
+
+    // 배열 교체
+    changeArr() {
+      this.items = this.items.filter((item) => item.message.match(/Foo/))
+      return this.items
+    },
+
+    even(numbers) {
+      return numbers.filter((number) => number % 2 === 0)
+    },
+
+    reverseArr() {
+      // revers()와 sort()는 원본 배열을 수정하므로
+      // [...numbers]와 같이 복사본을 만들어야 함
+      // computed()에서는 사용 못함
+      return [...this.numbers].reverse()
+    },
+
+    // < 메서드 헨들러 >
+    greet(event) {
+      // 'this'는 메서드가 활성화된 현재 인스턴스를 가리킴
+      alert(`안녕 ${this.firstName}!`)
+      // 'event'는 네이티브 DOM 이벤트 객체
+      if (event) {
+        alert(event.target.tagName)
+      }
+    },
+    // < 인라인 핸들러에서 메서드 호출 >
+    say(message) {
+      alert(message)
+    },
+
+    // < 인라인 핸들러에서 이벤트 객체 접근하기 >
+    warn(message, event) {
+      // 네이티브 이벤트 객체에 접근할 수 있음
+      if (event) {
+        event.preventDefault()
+      }
+      alert(message)
+    },
+    doThis() {
+      alert('전파 중지')
+    },
+    doThis2() {
+      alert('전파 중지2')
+    },
   },
   mounted() {
     // this는 컴포넌트 인스턴스를 나타냄
@@ -226,6 +479,10 @@ export default {
     const newObject = {}
     this.someObject = newObject
     console.log(newObject === this.someObject)
+
+    let arr = [1, 2, 3]
+    let arrChange = arr.map((x) => x * 2)
+    console.log(arrChange)
   },
 }
 </script>
