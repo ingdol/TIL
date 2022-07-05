@@ -3,9 +3,11 @@ import { createApp } from 'vue'
 
 // 싱글 파일 컴포넌트에서 최상위 컴포넌트 앱을 가져옴
 import App from './App.vue'
+import Home from './Home.vue'
 
 // <최상위 컴포넌트>
 const app = createApp(App)
+app.component('HomePage', Home)
 
 // <앱 마운트>
 // 앱 인스턴스는 .mount() 메서드가 호출될 때까지 아무 것도 렌더링하지 않음

@@ -247,11 +247,99 @@
   <textarea v-model="text"></textarea>
 
   <!-- < 체크박스 > -->
+
+  <!-- [ 감시자 ] -->
+  <p>예/아니오 질문 : <input v-model="question" /></p>
+  <p>{{ answer }}</p>
+
+  <!-- [ 템플릿 참조 ] -->
+  <!-- < ref로 접근하기 > -->
+  <input ref="input" />
+
+  <!-- < v-for 내부에서 ref 사용하기 > -->
+  <ul>
+    <li v-for="item in list" :key="item" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+
+  <!-- < 함수로 참조하기 > -->
+  <input
+    :ref="
+      (el) => {
+        // el을 속성이나 ref에 할당
+        // el.focus()
+      }
+    "
+  />
+  <div :style="{ fontSize: postFontSize + 'em' }">
+    <!-- [ 컴포넌트 이벤트 ] -->
+    <!-- < 이벤트 발신 및 수신하기 > -->
+    <!-- @enlarge-text -> 부모는 v-on 사용 -->
+    <!-- 부모에서는 kebab-case로 표기 -->
+    <ButtonCounter
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      :likes="post.likes"
+      :is-published="post.isPublished"
+      :comment-ids="post.commentIds"
+      @enlarge-text="postFontSize += 0.1"
+      greeting-message="안녕"
+      @increase-by="(n) => (count += n)"
+    />
+    <p>{{ count }}</p>
+    <!-- props를 자식 컴포넌트에 전달할 때, camelCase로 선언된 props 속성이여도 HTML 속성 표기법에서는 kebab-case로 표기 -->
+    <!-- 정적 props -> greeting-message="안녕" -->
+    <!-- 동적 props -> :title="post.title" -->
+
+    <!-- '42', 'false'는 정적이지만 문자열이 아닌 js 표현식임을 v-bind로 알려줌 -->
+    <ButtonCounter
+      :likes="42"
+      :is-published="false"
+      :comment-ids="[234, 266, 273]"
+      :author="{
+        name: '이름',
+        company: '회사',
+      }"
+    />
+
+    <!-- 값이 없는 prop은 'true' -->
+    <ButtonCounter is-published />
+
+    <h3>위에 템플릿은 다음과 동일</h3>
+    <ButtonCounter v-for="post in posts" v-bind="post" :key="post" />
+  </div>
+
+  <!-- < 슬롯이 있는 콘텐츠 배포 > -->
+  <AlertBox>slot</AlertBox>
+
+  <!-- < 동적 컴포넌트 > -->
+  <div class="demo">
+    <button
+      v-for="tab in tabs"
+      :key="tab"
+      :class="['tab-button', { active: currentTab === tab }]"
+      @click="currentTab = tab"
+    >
+      {{ tab }}
+    </button>
+    <!-- currentTab이 변경되면 컴포넌트가 변경 -->
+    <!-- vue의 <component> 엘리먼트 안에 is 속성 있음 -->
+    <!-- :is에 전달된 값 : 등록된 컴포넌트의 이름 문자열, 실제 가져온 컴포넌트 객체 -->
+    <component :is="currentTab" class="tab"></component>
+  </div>
+  <HomePage />
 </template>
 
 <script>
 import { nextTick } from 'vue'
 // import { debounce } from 'lodash-es'
+import ButtonCounter from './ButtonCounter.vue'
+import AlertBox from './AlertBox.vue'
+// import Home from './Home.vue'
+import Posts from './Posts.vue'
+import Archive from './Archive.vue'
 
 export default {
   name: 'App',
@@ -347,7 +435,80 @@ export default {
       ],
 
       text: '',
+
+      // [ 감시자 ]
+      question: '',
+      answer: '질문에는 일반적으로 물음표가 포함됩니다.',
+
+      // [ 템플릿 참조 ]
+      // < v-for 내부에서 ref 사용하기 >
+      list: [1, 2, 3],
+
+      // < props 전달하기 >
+      posts: [
+        {
+          id: 1,
+          title: 'vue와 함께한 나의 여행',
+          likes: 40,
+          isPublished: 'true',
+          commentIds: [0, 0],
+          author: {
+            name: '이름',
+            company: '회사',
+          },
+        },
+        {
+          id: 2,
+          title: 'vue로 블로깅하기',
+          likes: 30,
+          isPublished: 'true',
+          commentIds: [1, 1],
+          author: {
+            name: '이름',
+            company: '회사',
+          },
+        },
+        {
+          id: 3,
+          title: 'vue가 재미있는 이유',
+          likes: 20,
+          isPublished: 'true',
+          commentIds: [2, 2],
+          author: {
+            name: '이름',
+            company: '회사',
+          },
+        },
+      ],
+      postFontSize: 1,
+      currentTab: 'HomePage',
+      tabs: ['HomePage', 'Posts', 'Archive'],
     }
+  },
+  components: {
+    ButtonCounter,
+    AlertBox,
+    // Home,
+    Posts,
+    Archive,
+  },
+  watch: {
+    // 질문이 변경될 때마다 이 함수가 실행됨
+    question(newQuestion, oldQusetion) {
+      if (newQuestion.indexOf('?') > -1) {
+        this.getAnswer()
+      }
+      console.log(oldQusetion)
+    },
+
+    // < 깊은 감시자 >
+    someObject: {
+      handler(newValue, oldValue) {
+        console.log(newValue)
+        console.log(oldValue)
+      },
+      deep: true,
+    },
   },
   computed: {
     // 계산된 값을 반환하는 속성
@@ -471,6 +632,16 @@ export default {
     doThis2() {
       alert('전파 중지2')
     },
+    // [ 감시자 ]
+    async getAnswer() {
+      this.answer = '생각 중 ...'
+      try {
+        const res = await fetch('https://yesno.wtf/api')
+        this.answer = (await res.json()).answer === 'yes' ? '네' : '아니오'
+      } catch (error) {
+        this.answer = '오류! API에 연결할 수 없습니다.' + error
+      }
+    },
   },
   mounted() {
     // this는 컴포넌트 인스턴스를 나타냄
@@ -483,6 +654,12 @@ export default {
     let arr = [1, 2, 3]
     let arrChange = arr.map((x) => x * 2)
     console.log(arrChange)
+
+    // < ref로 접근하기 >
+    // this.$refs.input.focus()
+
+    // < v-for 내부에서 ref 사용하기 >
+    console.log(this.$refs.items)
   },
 }
 </script>
@@ -495,5 +672,36 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.demo {
+  font-family: sans-serif;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  padding: 20px 30px;
+  margin-top: 1em;
+  margin-bottom: 40px;
+  user-select: none;
+  overflow-x: auto;
+}
+
+.tab-button {
+  padding: 6px 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #f0f0f0;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.tab-button:hover {
+  background: #e0e0e0;
+}
+.tab-button.active {
+  background: #e0e0e0;
+}
+.tab {
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 </style>
