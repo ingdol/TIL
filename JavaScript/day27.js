@@ -13,7 +13,6 @@ function solution(arr) {
     max = Math.max(max, sum[0], sum[1]);
     sum[3] += arr[i][--num];
   }
-
   max = Math.max(max, sum[2], sum[3]);
   return max;
 }
