@@ -45,6 +45,8 @@ function solution(arr1, arr2) {
   }
   while (p1 < n) answer.push(arr1[p1++]);
   while (p2 < m) answer.push(arr2[p2++]);
+
+  return answer;
 }
 let arr1 = [1, 3, 5];
 let arr2 = [2, 3, 6, 7, 9];
