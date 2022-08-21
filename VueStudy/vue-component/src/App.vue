@@ -9,6 +9,11 @@
     <h2>다중이미지 업로드</h2>
     <p>다중 이미지 선택 및 미리보기</p>
     <multi-img-upload />
+    <h2>문서 편집기</h2>
+    <p>tiptap 라이브러리 사용</p>
+    <tiptap-editor />
+    <p>Quill 라이브러리 사용</p>
+    <quill-editor />
   </div>
 </template>
 
@@ -16,6 +21,8 @@
 import KeywordInput from "./components/KeywordInput.vue";
 import ContentBox from "./components/ContentBox.vue";
 import MultiImgUpload from "./components/MultiImgUpload.vue";
+import TiptapEditor from "./components/TiptapEditor.vue";
+import QuillEditor from "./components/QuillEditor.vue";
 
 export default {
   name: "App",
@@ -23,6 +30,8 @@ export default {
     KeywordInput,
     ContentBox,
     MultiImgUpload,
+    TiptapEditor,
+    QuillEditor,
   },
 };
 </script>

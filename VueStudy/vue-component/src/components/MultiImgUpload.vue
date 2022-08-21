@@ -29,7 +29,9 @@
 </template>
 
 <script>
+// https://github.com/SortableJS/Vue.Draggable
 import draggable from "vuedraggable";
+
 export default {
   name: "MultiImgUpload",
   data() {
