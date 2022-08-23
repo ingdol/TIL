@@ -14,6 +14,8 @@
     <tiptap-editor />
     <p>Quill 라이브러리 사용</p>
     <quill-editor />
+    <p>vue editor 라이브러리 사용</p>
+    <vue-editor :array="array" />
   </div>
 </template>
 
@@ -23,6 +25,7 @@ import ContentBox from "./components/ContentBox.vue";
 import MultiImgUpload from "./components/MultiImgUpload.vue";
 import TiptapEditor from "./components/TiptapEditor.vue";
 import QuillEditor from "./components/QuillEditor.vue";
+import VueEditor from "./components/VueEditor.vue";
 
 export default {
   name: "App",
@@ -32,7 +35,19 @@ export default {
     MultiImgUpload,
     TiptapEditor,
     QuillEditor,
+    VueEditor,
   },
+  data: () => ({
+    array: {
+      rightArray: [
+        { id1: "boxD" },
+        { id2: "boxE" },
+        { id1: "boxF" },
+        { id2: "boxG" },
+      ],
+      leftArray: [{ id1: "boxA" }, { id2: "boxB" }, { id2: "boxC" }],
+    },
+  }),
 };
 </script>
 
