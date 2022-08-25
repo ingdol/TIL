@@ -1,5 +1,10 @@
 <template>
-  <ckeditor :editor="editor" v-model="editorData" :config="editorConfig" />
+  <ckeditor
+    id="editor"
+    :editor="editor"
+    v-model="editorData"
+    :config="editorConfig"
+  />
 </template>
 
 <script>
@@ -16,15 +21,14 @@ export default {
     editor: ClassicEditor,
     editorData: "",
     editorConfig: {
-      // The configuration of the editor.
-      width: 850,
-      language: "ko",
+      height: "500px",
     },
   }),
 };
 </script>
-<style scoped>
-.ck-editor__editable {
-  min-height: 500px;
+<style>
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 400px;
+  margin-bottom: 20px;
 }
 </style>

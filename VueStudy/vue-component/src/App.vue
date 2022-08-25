@@ -16,6 +16,10 @@
     <quill-editor />
     <p>vue editor 라이브러리 사용</p>
     <vue-editor :array="array" />
+    <vue-editor-2 />
+    <h2>다중 셀렉트</h2>
+    <p>셀렉트 박스</p>
+    <multi-select-box></multi-select-box>
   </div>
 </template>
 
@@ -26,6 +30,8 @@ import MultiImgUpload from "./components/MultiImgUpload.vue";
 import TiptapEditor from "./components/TiptapEditor.vue";
 import QuillEditor from "./components/QuillEditor.vue";
 import VueEditor from "./components/VueEditor.vue";
+import VueEditor2 from "./components/VueEditor2.vue";
+import MultiSelectBox from "./components/MultiSelectBox.vue";
 
 export default {
   name: "App",
@@ -36,18 +42,9 @@ export default {
     TiptapEditor,
     QuillEditor,
     VueEditor,
+    VueEditor2,
+    MultiSelectBox,
   },
-  data: () => ({
-    array: {
-      rightArray: [
-        { id1: "boxD" },
-        { id2: "boxE" },
-        { id1: "boxF" },
-        { id2: "boxG" },
-      ],
-      leftArray: [{ id1: "boxA" }, { id2: "boxB" }, { id2: "boxC" }],
-    },
-  }),
 };
 </script>
 
