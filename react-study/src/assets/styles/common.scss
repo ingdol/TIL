@@ -1,0 +1,184 @@
+/* reset */
+
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 500;
+}
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  display: flex;
+  font-size: 14px;
+}
+body,
+pre {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p,
+dl,
+dt,
+dd,
+th,
+menu {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+li {
+  list-style: none;
+}
+img {
+  vertical-align: middle;
+  width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input,
+textarea,
+button {
+  outline: none;
+  font-weight: 500;
+}
+textarea {
+  font-family: inherit;
+  padding: 0;
+}
+em,
+address {
+  font-style: normal;
+}
+button {
+  background: none;
+  text-align: left;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+dialog {
+  padding: 0;
+  border: none;
+}
+details {
+  > summary {
+    cursor: pointer;
+    list-style: none;
+    &::marker, /* Latest Chrome, Edge, Firefox */ 
+    ::-webkit-details-marker /* Safari */ {
+      display: none;
+    }
+  }
+}
+table {
+  tr,
+  th,
+  td {
+    font-weight: inherit;
+  }
+}
+
+select {
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+// 글자 줄바꿈 block
+.white-space-nowrap {
+  white-space: no-wrap;
+}
+
+/* text-style */
+.text-center {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// position right
+.right {
+  display: block;
+  margin-left: auto;
+}
+
+/* display */
+.flex {
+  display: flex;
+
+  // direction
+  &.colum {
+    flex-direction: column;
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
+  // gap
+  &.gap8 {
+    gap: 8px;
+  }
+  &.gap10 {
+    gap: 10px;
+  }
+  &.gap16 {
+    gap: 16px;
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.align-start {
+    align-items: flex-start;
+  }
+  &.row-reverse {
+    flex-direction: row-reverse;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+// position
+.relative {
+  position: relative;
+}

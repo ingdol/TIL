@@ -1,0 +1,12 @@
+<svg id="ico_plus" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="그룹_923" data-name="그룹 923" transform="translate(-113 -119)">
+    <g id="_64px_icon" data-name="64px icon" transform="translate(113 119)" opacity="0">
+      <g id="사각형_2" data-name="사각형 2" fill="none">
+        <path d="M0,20V0H20V20Z" stroke="none"/>
+        <path d="M 19 19 L 19 1 L 1 1 L 1 19 L 19 19 M 20 20 L 0 20 L 0 0 L 20 0 L 20 20 Z" stroke="none" fill="#1b6ecf"/>
+      </g>
+    </g>
+    <line id="선_104" data-name="선 104" x2="12" transform="translate(117 129)" fill="none" stroke="#1b6ecf" stroke-linecap="round" stroke-width="1"/>
+    <line id="선_105" data-name="선 105" x2="12" transform="translate(123 123) rotate(90)" fill="none" stroke="#1b6ecf" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="ico_female" transform="translate(-8 -8)">
+    <rect id="사각형_404" data-name="사각형 404" width="16" height="16" rx="2" transform="translate(8 8)" fill="#fff"/>
+    <g id="타원_4" data-name="타원 4" transform="translate(12 9)" fill="#fff" stroke="#e96a73" stroke-width="1.5">
+      <circle cx="5.5" cy="5.5" r="5.5" stroke="none"/>
+      <circle cx="5.5" cy="5.5" r="4.75" fill="none"/>
+    </g>
+    <line id="선_19" data-name="선 19" y1="5" x2="5" transform="translate(9.5 17.5)" fill="none" stroke="#e96a73" stroke-width="1.5"/>
+    <line id="선_22" data-name="선 22" x1="5" y1="5" transform="translate(9.5 17.5)" fill="none" stroke="#e96a73" stroke-width="1.5"/>
+  </g>
+</svg>

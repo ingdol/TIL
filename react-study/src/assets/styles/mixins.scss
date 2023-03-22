@@ -1,0 +1,214 @@
+@mixin textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 가상요소
+@mixin pseudo($width, $height) {
+  content: '';
+  display: block;
+  width: $width;
+  height: $height;
+}
+
+/* 정렬 관련 */
+@mixin gap($gap) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-bottom {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+@mixin flex-row-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin absolute-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@mixin absolute-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@mixin absolute-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@mixin absolute-bottom-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-row-center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+@mixin absolute-column-center {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@mixin fixed-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 스크롤바 숨기기 */
+@mixin hide-scroll {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* button 관련 스타일 */
+@mixin btn-color($color, $background) {
+  color: $color;
+  background-color: $background;
+  transition: background-color 0.2s;
+  > a {
+    // line-height: var(--btn-height);
+  }
+}
+
+@mixin btn-border($bor) {
+  background-color: #ffffff;
+  border: 1px solid $bor;
+  color: $bor;
+  > a {
+    // line-height: calc(var(--btn-height) - 4px);
+  }
+}
+
+/* circle */
+@mixin circle($width, $background-color, $border-width, $border-color) {
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+  background-color: $background-color;
+  border: $border-width solid $border-color;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: $width;
+}
+
+// 스크롤바 커스텀 - 추후 변경 예정
+@mixin scrollbarCustom($thumb, $bar) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb $bar;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    // cursor: pointer;
+  }
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: $thumb;
+    // border-radius: 4px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bar;
+    // border-radius: 4px;
+  }
+}
+
+// 진료 내역 테이블 - 진료 상태에 따른 좌측 띠 색상
+@mixin colorsByType($color) {
+  td:first-child > em {
+    color: $color;
+  }
+  &::before {
+    background: $color;
+  }
+}
+
+@mixin plus($width, $color) {
+  &::before,
+  &::after {
+    @include pseudo(1px, $width);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: $color;
+  }
+  &::before {
+    transform: translate(-50%, -50%);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+// 이미지 미리보기 가운데 정렬
+@mixin imgCenter($width) {
+  position: relative;
+  overflow: hidden;
+  width: $width;
+  height: $width;
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include absolute-center;
+  }
+}

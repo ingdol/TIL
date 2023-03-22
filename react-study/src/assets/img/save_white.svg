@@ -1,0 +1,11 @@
+<svg id="ico_save-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="그룹_66" data-name="그룹 66" transform="translate(-1515 -230.798)">
+    <path id="패스_6" data-name="패스 6" d="M9746.851,240.888v5h12v-5" transform="translate(-8229.851 -0.888)" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <path id="패스_7" data-name="패스 7" d="M9753.471,234.466v8.2" transform="translate(-8230.471 -2.668)" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <path id="패스_8" data-name="패스 8" d="M9750.14,239.1l3.5,3,3.5-3" transform="translate(-8230.64 -2.097)" fill="none" stroke="#fff" stroke-width="1.5"/>
+  </g>
+  <g id="사각형_537" data-name="사각형 537" fill="none" stroke="#fff" stroke-width="1" opacity="0">
+    <rect width="16" height="16" stroke="none"/>
+    <rect x="0.5" y="0.5" width="15" height="15" fill="none"/>
+  </g>
+</svg>

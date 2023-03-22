@@ -1,0 +1,368 @@
+#header {
+  height: $GNB-height;
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  box-shadow: 0px 3px 6px #00000021;
+  > div {
+    position: relative;
+    width: $content-width;
+    height: 100%;
+    padding: 0 94px 0 33px;
+    margin: 0 auto;
+    display: flex;
+    h1 {
+      height: 100%;
+      margin-right: 81px;
+      a {
+        display: block;
+        height: 100%;
+        @include flex-column-center;
+        span {
+          color: #2d325a;
+          font-size: 17px;
+          margin-left: 2.5px;
+          font-weight: 500;
+        }
+        img {
+          display: block;
+          height: 20px;
+        }
+      }
+    }
+    nav {
+      a {
+        display: inline-block;
+        width: 141px;
+        text-align: center;
+        line-height: $GNB-height;
+        position: relative;
+        &:after {
+          @include pseudo(0, 3px);
+          @include absolute-row-center();
+          bottom: 0;
+          transition: 0.3s;
+          background: $primary;
+        }
+        &:hover,
+        &.active {
+          color: $primary;
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    details {
+      border: 1px solid transparent;
+      position: absolute;
+      top: 10px;
+      right: 94px;
+      background: #fff;
+      min-width: 187px;
+      > summary {
+        padding: 8px 10px;
+        @include flex-column-center();
+        outline: none;
+        gap: 6px;
+        > span {
+          @include imgCenter(22px);
+          border-radius: 50%;
+        }
+
+        &::after {
+          border-radius: 50%;
+          background: url("../../assets/img/chevron_gray.svg") center/14px
+            no-repeat;
+        }
+        &:hover {
+          &::after {
+            background-color: $secondary;
+          }
+        }
+      }
+      > ul {
+        padding: 7px 0;
+        > li {
+          > * {
+            display: block;
+            width: 100%;
+            line-height: 50px;
+            text-align: right;
+            padding-right: 31px;
+            transition: 0.2s;
+            &:hover {
+              background: $secondary;
+            }
+          }
+        }
+      }
+      &[open] {
+        border-color: $secondary;
+      }
+    }
+  }
+}
+
+#main {
+  width: 100vw;
+  min-width: $content-width;
+  height: calc(100vh - $GNB-height);
+  background: $main-bg;
+
+  overflow-y: overlay;
+  overflow-x: hidden;
+  > div {
+    width: $content-width;
+    margin: 0 auto;
+    padding: 34px 94px;
+    > h2 {
+      font-size: 24px;
+    }
+  }
+}
+
+table.notice {
+  tr {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    > th,
+    > td {
+      @include flex-column-center;
+      &:first-child {
+        width: 80px;
+      }
+      &:nth-child(2) {
+        flex-grow: 1;
+      }
+      &:nth-child(3) {
+        width: 120px;
+        color: #a7a7a7;
+      }
+    }
+    > td:nth-child(2) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+table.record {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  thead {
+    color: #a4a6ab;
+    font-size: 16px;
+    @include flex-column-center();
+    font-weight: 400;
+    height: 44px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-left: 24px;
+  }
+
+  tbody {
+    @include scrollbarCustom($primary, #9b9fa7);
+    overflow: auto;
+    @include flex-column;
+    height: 200px;
+    > tr {
+      font-size: 14px;
+      @include flex-column-center();
+      width: 100%;
+      line-height: 40px;
+      position: relative;
+      padding-left: 24px;
+      cursor: pointer;
+      transition: 0.1s;
+      &:hover {
+        background: #eff1f4;
+      }
+
+      > td {
+        @include textOverflow();
+        &:first-child {
+          > em {
+            display: block;
+          }
+        }
+      }
+
+      &.empty {
+        justify-content: center;
+        color: #9b9fa7;
+      }
+    }
+  }
+}
+
+table.calculate {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  thead {
+    color: #a4a6ab;
+    font-size: 14px;
+    font-weight: 400;
+    tr:nth-child(1) {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+    }
+  }
+
+  tbody {
+    height: 100px;
+    background-color: #fff;
+    @include scrollbarCustom($primary, #9b9fa7);
+    overflow: auto;
+    @include flex-column;
+    border: 1px solid #d1d6e1;
+    border-radius: 10px 0px 0px 10px;
+
+    p {
+      line-height: 15px;
+    }
+    p:nth-child(2) {
+      font-size: 8px;
+    }
+
+    > tr {
+      padding-left: 20px;
+      font-size: 14px;
+      @include flex-column-center();
+      width: 100%;
+      line-height: 40px;
+      border-bottom: $table-border;
+      position: relative;
+
+      > td {
+        @include textOverflow();
+        &:first-child {
+          > em {
+            display: block;
+          }
+        }
+      }
+      &.empty {
+        justify-content: center;
+        color: #a4a6ab;
+        height: 40px;
+        text-align: center;
+      }
+    }
+    tr:last-child {
+      border-bottom: $table-border;
+    }
+  }
+
+  td:nth-child(10) {
+    font-weight: 600;
+  }
+
+  tr {
+    display: flex;
+    padding: 0 5px;
+    gap: 2px;
+
+    > th,
+    > td {
+      flex-shrink: 0;
+      &:last-child {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+// viewport width 1280px 이하 -> 좌우 padding
+// @media screen and (max-width: 1280px) {
+//   #header > div {
+//     padding: 0 24px;
+//     details {
+//       right: 24px;
+//     }
+//   }
+
+//   #main > div {
+//     padding-left: 24px;
+//     // padding-right: 24px;
+//   }
+// }
+
+.searchbox {
+  position: relative;
+  width: 206px;
+  input {
+    width: 206px;
+    border: 1px solid #f9f9fa;
+    background-color: #f9f9fa;
+    ::placeholder {
+      color: #c7c7c7;
+    }
+  }
+  .search_btn {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    img {
+      width: 20px;
+    }
+  }
+}
+
+.img_upload {
+  .img_list {
+    @include gap(12px);
+    flex-wrap: wrap;
+    margin-top: 12px;
+    width: 750px;
+    > div {
+      width: 140px;
+      height: 140px;
+      border: 1px solid #eee;
+      @include flex-center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    img {
+      width: auto;
+      height: auto;
+      max-width: 140px;
+      max-height: 140px;
+    }
+    &_del {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.body_position_box {
+  position: relative;
+  display: inline-block;
+  width: 169.94px;
+  height: 667.17px;
+  background: #000;
+  color: #fff;
+  & + & {
+    margin-left: 62px;
+  }
+}
