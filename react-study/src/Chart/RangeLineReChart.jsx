@@ -82,8 +82,8 @@ export const RangeLineReChart = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis />
-            <YAxis type="number" domain={[startIndex, 6000]} />
+            <XAxis dataKey="name" type="number" domain={[startIndex, 6]} />
+            <YAxis />
             <Tooltip />
             <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
             <Line
@@ -104,7 +104,7 @@ export const RangeLineReChart = () => {
       <button
         onClick={() => {
           console.log("1");
-          setStartIndex(3000);
+          setStartIndex(1);
         }}
       >
         {startIndex}

@@ -10,6 +10,7 @@ import { BiaxialLineReChart } from "./Chart/BiaxialLineReChart";
 import { DoughutChart } from "./Chart/DoughnutChart";
 import { PieReChart } from "./Chart/PieReChart";
 import { RangeLineReChart } from "./Chart/RangeLineReChart";
+import { SelectBox } from "./utils/SelectBox";
 
 export let Context1 = React.createContext();
 
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <SelectBox />
       <BarReChart />
       <BiaxialLineReChart />
       <PieReChart />
