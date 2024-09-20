@@ -19,18 +19,15 @@ function App() {
 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <Container className="p-3" align="center">
-        <h3>Drag and Drop</h3>
-        <SortableContext
-          items={languages}
-          strategy={verticalListSortingStrategy}
-        >
-          {/* We need components that use the useSortable hook */}
-          {languages.map(language => (
-            <SortableItem key={language} id={language} />
-          ))}
-        </SortableContext>
-      </Container>
+      {/* <Container className="p-3" align="center"> */}
+      <h3>Drag and Drop</h3>
+      <SortableContext items={languages} strategy={verticalListSortingStrategy}>
+        {/* We need components that use the useSortable hook */}
+        {languages.map(language => (
+          <SortableItem key={language} id={language} />
+        ))}
+      </SortableContext>
+      {/* </Container> */}
     </DndContext>
   );
 
